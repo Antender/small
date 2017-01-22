@@ -1,0 +1,78 @@
+include std/math.e
+include std/console.e
+sequence Numbers,Attempt
+integer I,Buffer,Bulls,Cows,NumAttempts
+clear_screen()
+puts(1,"Bulls and cows.Version 2.Author: Volokitin Anton\n")
+puts(1,"Number  Bulls   Cows    Attempt\n")
+Numbers = {rand_range(49,57)}
+I = 1
+while I<4 do
+    Buffer = rand_range(48,57)
+    if not find(Buffer,Numbers) then
+        I=I+1
+        Numbers=append(Numbers,Buffer)
+    end if
+end while
+Attempt={}
+NumAttempts=0
+while not(Buffer=27) do
+    Buffer=wait_key()
+    switch Buffer do
+	case 48,49,50,51,52,53,54,55,56,57 then
+        if not((length(Attempt)=0)and(Buffer=48)or(find(Buffer,Attempt))) then
+           	Attempt=Attempt&Buffer
+           	puts(1,Buffer)
+           	if length(Attempt)=4 then
+           		Bulls=0
+           		Cows=0
+           		for J=1 to 4 do
+                    I=find(Attempt[J],Numbers)
+                    if I!=0 then
+                        if I=J then
+                        Bulls+=1
+                        else
+                        Cows+=1
+                        end if
+                    end if
+           		end for
+           		Attempt={}
+                	NumAttempts+=1
+           		if Bulls=4 then
+           		    clear_screen()
+                    puts(1,"WIN!!!!\nYou guessed number ")
+		    puts(1,Numbers)
+		    puts(1," in ")
+                    print(1,NumAttempts)
+                    puts(1," attempts.")
+                    puts(1,'\n')
+                    any_key("Press Any Key to continue...",1)
+                    Buffer=27
+                else
+                    puts(1,{'\t',(Bulls+48),'\t','\t',(Cows+48),'\t','\t'})
+                    print(1,NumAttempts)
+                    puts(1,'\n')
+           		end if
+           	end if
+        end if
+	break
+	case 8 then
+		if length(Attempt)>0 then
+			Attempt=remove(Attempt,length(Attempt),length(Attempt))
+            puts(1,'\r')
+            puts(1,repeat(32,(length(Attempt)+1)))
+            puts(1,'\r')
+            puts(1,Attempt)
+		end if
+	break
+	case 115 then
+		clear_screen()
+		puts(1,"The number was ")
+		puts(1,Numbers)
+		puts(1,'\n')
+		Buffer=27
+		any_key("Press Any Key to continue...",1)
+	break
+    end switch
+end while
+clear_screen()

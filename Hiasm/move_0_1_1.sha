@@ -1,0 +1,563 @@
+Make(delphi)
+ver(4.04 build 185)
+Add(MainForm,2953706,35,56)
+{
+ Width=0
+ Height=0
+ Visible=1
+ Enabled=1
+ WinStyle=1
+ Layout="1"
+ AlphaBlendValue=160
+ Caption=""
+ BorderStyle=0
+ Icon=[ZIPBE10000078DAED965B4853711CC7FF1A5DA4A80892DEB49EA21E8AA6DB3967C754887A0A82E82122E86D6A6A89399D26739A7A6617E74E96A67929F39EB7CCBCB0D46928A6AE365B2A69B602331322A3B0DA7EFDCF99E28E17A2B9DEF61D9F33F86CFFF3FDB1FDCFD910F2C00F5F5FC41D51F97684BC11427B3158A12064F77CF06B3B36DB71C71D77564F968C5820081389D9BA9AFB1FB919422016839FD35999C4C6CAC479B74209EF9B2B380CD2BA788EDCF3044F4EA83F53AE3A051529A7AD3961FEB579E1121FECD296B8DD77C225282FDC75331444121812E5871D6274F9B130FDCE0C8D1A1914848BDBEF86F9D5EBF2E31C9DBE2892385818214645788D2B521245F2144788988EBBB160B359E1EBE70FD09E2FB7DDBF20FED55910E7E062A0248A303E8892041DF342A82C7AED33545E2279CA2E8A98EE42DC6FFD0D5C7E7C9D818EDC48E82E8C11B8BE8A54A8924B272AA3C527EB14019ED5316B9BA13696E479182D627A8B17FBB9981AB5D0531423703F7F7C83A1A66C6848089CAE958B431E2548D737289C9FA1319EE469908B98FE1261BFB9490BCFEF09FBB9587FCDC1585729B4A41C9D7D1C4F243627909B9F2490A83591FAE77E6E0D47B342C4184A85FD23CD5A30942CEFE7C2ED8971FD7D6853D273AD89E4D985F3FC6BDA93281EDD653FC6541E27E87AD3C282B154BE62FFECE408180AC3E06912D5A55352FB7549CEF53F4BA178BA947ECCEB4A61FFDB3616CC15CBFBBF8CF78121E78CB54B25A9D1ABC83DFA6412E9559453DF7F5F9A94A737D99F19AD5EECE73FDFC67418AD940BDCCC500BBC604FCCF5A6486EF75CA17662D06006E5F4FE33A8A53C83A9FECC788DFD5AB7E1FDF5A9AF0C8C994760BC4621749A63B3036912653F436F194897AEF9FA7F758DE619528B194B9D027E7FFF02539DD960D6044F9AD46293A53EDED14D99D484ECE5557ABD3143EA92FBDF68266DE73AC1BCAF08858F4D4930AA393C367C9D3C8E9D7A893B61CE0CF61CBE41BBECFE3FA1A5176026D840789B45F78F6928E98456BACC59B20EA0310DEDD2DF3F0B1BB0C0394C9585A5F771F3ACE426B3E9FFF21F60BE6B03C6CB619E65CE1D77DC71C799C06AD985D9A4044081181FCC36CC3A8C070639E031EF37CEBFC7C7BE8E5B4FC25FF30718E91666]
+ TaskBar=1
+ DragForm=0
+ link(onCreate,4334281:doEvent1,[])
+}
+Add(MultiElement,4090719,322,259)
+{
+ link(onEvent1,10054055:doCheck,[(375,265)(375,272)])
+ link(Data1,14071905:Count,[])
+ link(Data2,14071905:Array,[])
+}
+BEGIN_SDK
+  Add(EditMulti,602787,21,21)
+  {
+   EventCount=1
+   WorkCount=1
+   DataCount=2
+   Width=482
+   Height=228
+   link(doWork1,10953203:doEnum,[(24,27)(24,139)])
+  }
+  Add(WinEnum,10953203,42,133)
+  {
+   link(onFindWindow,1512438:doValue,[])
+  }
+  Add(StrMask,841490,406,133)
+  {
+   Point(doMask)
+   link(onTrue,602787:onEvent1,[(488,146)(488,27)])
+   link(Str,1512438:Var,[(412,121)(390,121)(390,191)(97,191)])
+  }
+  Add(ArrayRW,4286502,343,133)
+  {
+   link(onRead,841490:doMask,[(380,139)(380,146)])
+   link(Array,602787:Data2,[(349,66)(34,66)])
+   link(Index,2397291:Position,[(356,121)(309,121)(309,178)(279,178)])
+  }
+  Add(GlobalVar,1512438,91,133)
+  {
+   Name="Caption"
+   link(onValue,11191195:doData,[])
+  }
+  Add(For,2397291,273,133)
+  {
+   IncludeEnd=1
+   link(onEvent,790097:doEvent1,[])
+   link(End,602787:Data1,[(286,77)(27,77)])
+  }
+  Add(Hub,790097,315,133)
+  {
+   link(onEvent1,4286502:doRead,[])
+   link(onEvent2,841490:doCompare,[(337,146)(337,173)(396,173)(396,139)])
+  }
+  Add(DoData,11191195,168,133)
+  {
+   link(onEventData,11745054:doValue,[])
+   link(Data,10953203:Handle,[(174,121)(155,121)(155,174)(48,174)])
+  }
+  Add(GlobalVar,11745054,210,133)
+  {
+   Name="Handle"
+   link(onValue,2397291:doFor,[])
+  }
+END_SDK
+Add(MultiElement,11284076,273,259)
+{
+ link(onEvent1,4090719:doWork1,[])
+ link(onEvent2,3185668:doHint,[(310,272)(310,102)(90,102)(90,97)])
+ link(onEvent3,3734518:doEvent1,[(305,316)(11,316)(11,328)])
+}
+BEGIN_SDK
+  Add(EditMulti,7705128,21,21)
+  {
+   EventCount=3
+   WorkCount=2
+   Width=258
+   Height=270
+   link(doWork1,10793480:doRead,[(49,27)(49,34)])
+   link(doWork2,6791942:doSwitch,[(25,34)(25,62)])
+  }
+  Add(Timer,2461795,119,63)
+  {
+   Interval=10
+   Point(doInterval)
+   link(onTimer,7705128:onEvent1,[(166,69)(166,27)])
+  }
+  Add(Switch,6791942,28,56)
+  {
+   Default=0
+   Point(onOn)
+   Point(onOff)
+   link(onOn,14589516:doEvent1,[])
+   link(onOff,7872334:doEvent1,[(65,76)(65,97)])
+  }
+  Add(Hub,14589516,77,63)
+  {
+   OutCount=3
+   link(onEvent1,2461795:doTimer,[])
+   link(onEvent2,7013722:doData,[(102,76)(102,118)])
+   link(onEvent3,10703105:doData,[(99,83)(99,167)])
+  }
+  Add(Hub,7872334,77,91)
+  {
+   OutCount=3
+   link(onEvent1,2461795:doStop,[(105,97)(105,76)])
+   link(onEvent2,14462135:doData,[(96,104)(96,209)])
+   link(onEvent3,8040071:doData,[(93,111)(93,251)])
+  }
+  Add(Ini,10793480,77,28)
+  {
+   FileName="config.ini"
+   Section="[Startup]"
+   Key="CheckDelay"
+   link(onResult,2461795:doInterval,[(114,34)(114,83)])
+  }
+  Add(DoData,7013722,182,112)
+  {
+   Data=String(Включена)
+   link(onEventData,11262957:doEvent1,[(226,118)(226,41)])
+  }
+  Add(DoData,10703105,182,161)
+  {
+   Data=String(Выключить)
+   link(onEventData,8701073:doEvent1,[(233,167)(233,76)])
+  }
+  Add(DoData,14462135,182,203)
+  {
+   Data=String(Выключена)
+   link(onEventData,11262957:doEvent2,[(230,209)(230,48)])
+  }
+  Add(DoData,8040071,182,245)
+  {
+   Data=String(Включить)
+   link(onEventData,8701073:doEvent2,[(240,251)(240,83)])
+  }
+  Add(Hub,11262957,238,35)
+  {
+   InCount=2
+   OutCount=1
+   link(onEvent1,7705128:onEvent2,[(266,41)(266,34)])
+  }
+  Add(Hub,8701073,252,70)
+  {
+   InCount=2
+   OutCount=1
+   link(onEvent1,7705128:onEvent3,[(272,76)(272,41)])
+  }
+END_SDK
+Add(MultiElement,3636101,567,308)
+{
+ link(onEvent1,8747939:doLeft,[])
+ link(onEvent2,8747939:doTop,[])
+}
+BEGIN_SDK
+  Add(EditMulti,7676610,7,14)
+  {
+   EventCount=2
+   WorkCount=1
+   Width=594
+   Height=452
+   link(doWork1,12052451:doData,[(7,55)])
+  }
+  Add(GlobalVar,14134037,14,21)
+  {
+   Name="State"
+   Data=Integer(0)
+  }
+  Add(Case,7508678,63,49)
+  {
+   Value=String(0)
+   link(onNextCase,3466797:doCase,[(101,55)(101,91)(58,91)(58,104)])
+   link(onTrue,13489621:doEvent1,[])
+  }
+  Add(Case,3466797,63,98)
+  {
+   Value=String(1)
+   link(onNextCase,10481891:doCase,[(101,104)(101,138)(56,138)(56,153)])
+   link(onTrue,7886896:doEvent1,[])
+  }
+  Add(Case,10481891,63,147)
+  {
+   Value=String(2)
+   link(onNextCase,14618919:doEvent1,[(107,153)(107,209)])
+   link(onTrue,16758920:doEvent1,[])
+  }
+  Add(DoData,12052451,14,49)
+  {
+   link(onEventData,7508678:doCase,[])
+   link(Data,14134037:Var,[])
+  }
+  Add(GlobalVar,12179822,427,56)
+  {
+   Name="State"
+   Data=Integer(0)
+  }
+  Add(DoData,9101718,322,56)
+  {
+   Data=String(1)
+   link(onEventData,13479606:doEvent1,[])
+  }
+  Add(DoData,10513572,322,252)
+  {
+   Data=Integer(0)
+   link(onEventData,9970947:doEvent1,[])
+  }
+  Add(DoData,14229311,322,357)
+  {
+   Data=Integer(0)
+   link(onEventData,786705:doEvent1,[])
+  }
+  Add(DoData,4000886,322,105)
+  {
+   Data=String(2)
+   link(onEventData,13479606:doEvent2,[(376,111)(376,69)])
+  }
+  Add(DoData,10046006,322,308)
+  {
+   Data=Integer(0)
+   link(onEventData,9970947:doEvent2,[(362,314)(362,265)])
+   link(Data,14015374:Var,[])
+  }
+  Add(DoData,4604880,322,154)
+  {
+   Data=String(3)
+   link(onEventData,13479606:doEvent3,[(384,160)(384,76)])
+  }
+  Add(DoData,8252197,322,413)
+  {
+   link(onEventData,786705:doEvent2,[(362,419)(362,370)])
+   link(Data,12810655:Var,[])
+  }
+  Add(DoData,15774511,322,203)
+  {
+   Data=String(0)
+   link(onEventData,13479606:doEvent4,[(387,209)(387,83)])
+  }
+  Add(Hub,9970947,371,252)
+  {
+   InCount=2
+   OutCount=1
+   link(onEvent1,7676610:onEvent1,[(543,258)(543,20)])
+  }
+  Add(GlobalVar,14015374,322,287)
+  {
+   Name="X"
+  }
+  Add(GlobalVar,12810655,322,392)
+  {
+   Name="Y"
+  }
+  Add(Hub,786705,371,357)
+  {
+   InCount=2
+   OutCount=1
+   link(onEvent1,7676610:onEvent2,[(567,363)(567,27)])
+  }
+  Add(Hub,13489621,119,56)
+  {
+   OutCount=3
+   link(onEvent1,9101718:doData,[])
+   link(onEvent2,11796165:doEvent1,[(277,69)(277,258)])
+   link(onEvent3,6164964:doEvent1,[(246,76)(246,363)])
+  }
+  Add(Hub,7886896,119,105)
+  {
+   OutCount=3
+   link(onEvent1,4000886:doData,[])
+   link(onEvent2,4870938:doEvent1,[(264,118)(264,314)])
+   link(onEvent3,6164964:doEvent2,[(237,125)(237,370)])
+  }
+  Add(Hub,16758920,119,154)
+  {
+   OutCount=3
+   link(onEvent1,4604880:doData,[])
+   link(onEvent2,4870938:doEvent2,[(255,167)(255,321)])
+   link(onEvent3,6665160:doEvent1,[(230,174)(230,419)])
+  }
+  Add(Hub,14618919,119,203)
+  {
+   OutCount=3
+   link(onEvent1,15774511:doData,[])
+   link(onEvent2,11796165:doEvent2,[(270,216)(270,265)])
+   link(onEvent3,6665160:doEvent2,[(224,223)(224,426)])
+  }
+  Add(Hub,13479606,392,56)
+  {
+   InCount=4
+   OutCount=1
+   link(onEvent1,12179822:doValue,[])
+  }
+  Add(Hub,11796165,287,252)
+  {
+   InCount=2
+   OutCount=1
+   link(onEvent1,10513572:doData,[])
+  }
+  Add(Hub,4870938,287,308)
+  {
+   InCount=2
+   OutCount=1
+   link(onEvent1,10046006:doData,[])
+  }
+  Add(Hub,6164964,287,357)
+  {
+   InCount=2
+   OutCount=1
+   link(onEvent1,14229311:doData,[])
+  }
+  Add(Hub,6665160,287,413)
+  {
+   InCount=2
+   OutCount=1
+   link(onEvent1,8252197:doData,[])
+  }
+END_SDK
+Add(PosWindow,8747939,637,308)
+{
+ link(Handle,13009144:Var,[])
+}
+Add(MultiElement,11374044,567,259)
+{
+}
+BEGIN_SDK
+  Add(EditMulti,13965323,21,21)
+  {
+   WorkCount=1
+   link(doWork1,827962:doEvent1,[(25,27)(25,118)])
+  }
+  Add(GlobalVar,11028261,112,112)
+  {
+   Name="X"
+  }
+  Add(GlobalVar,2914305,196,161)
+  {
+   Name="Y"
+  }
+  Add(Math,1959113,147,161)
+  {
+   OpType=1
+   link(onResult,2914305:doValue,[])
+   link(Op1,12560581:Height,[(153,92)(76,92)])
+   link(Op2,4592712:CurrentHeight,[(160,86)(125,86)])
+  }
+  Add(Math,4293221,63,112)
+  {
+   OpType=1
+   link(onResult,11028261:doValue,[])
+   link(Op1,12560581:Width,[])
+   link(Op2,4592712:CurrentWidth,[(76,96)(118,96)])
+  }
+  Add(Screen,12560581,63,49)
+  {
+  }
+  Add(SizeWindow,4592712,112,49)
+  {
+   link(Handle,9162066:Var,[])
+  }
+  Add(Hub,827962,35,112)
+  {
+   link(onEvent1,4293221:doOperation,[])
+   link(onEvent2,1959113:doOperation,[(58,125)(58,167)])
+  }
+  Add(GlobalVar,9162066,112,21)
+  {
+   Name="Handle"
+  }
+END_SDK
+Add(Switch,10054055,413,252)
+{
+ Default=0
+ Point(onOn)
+ Point(onOff)
+ Point(doCheck)
+ link(onOn,7594548:doWork1,[])
+ link(onOff,2509474:doWork1,[(454,272)(454,314)])
+}
+Add(MultiElement,7594548,469,259)
+{
+ FirstUsage=0
+ link(onEvent1,167824:doEvent1,[])
+}
+BEGIN_SDK
+  Add(EditMulti,13331645,21,21)
+  {
+   EventCount=1
+   WorkCount=1
+   Width=174
+   link(doWork1,6134092:doCheck,[(25,27)(25,181)])
+  }
+  Add(MouseEvent,5533995,42,70)
+  {
+   Point(Handle)
+  }
+  Add(PointInRect,6134092,42,175)
+  {
+   Point2AsOffset=0
+   link(onTrue,13331645:onEvent1,[(179,181)(179,27)])
+   link(Point,576565:Point,[])
+   link(RPoint1,10299757:Point,[(55,159)(97,159)])
+   link(RPoint2,12287573:Point,[(62,167)(146,167)])
+  }
+  Add(PointXY,10299757,91,112)
+  {
+   link(X,34213:CurrentLeft,[])
+   link(Y,34213:CurrentTop,[])
+  }
+  Add(PointXY,12287573,140,112)
+  {
+   link(X,16178231:CurrentWidth,[])
+   link(Y,16178231:CurrentHeight,[])
+  }
+  Add(PointXY,576565,42,112)
+  {
+   link(X,5533995:MouseX,[])
+   link(Y,5533995:MouseY,[])
+  }
+  Add(SizeWindow,16178231,140,70)
+  {
+   link(Handle,8572082:Var3,[(146,52)])
+  }
+  Add(PosWindow,34213,91,70)
+  {
+   link(Handle,8572082:Var2,[])
+  }
+  Add(GetDataEx,8572082,91,47)
+  {
+   Angle=3
+   link(Data,7492630:Var,[(41,52)])
+  }
+  Add(GlobalVar,7492630,35,28)
+  {
+   Name="Handle"
+  }
+END_SDK
+Add(MultiElement,2509474,469,308)
+{
+ FirstUsage=0
+ link(onEvent1,167824:doEvent2,[(513,314)(513,272)])
+}
+BEGIN_SDK
+  Add(EditMulti,10986917,21,21)
+  {
+   EventCount=1
+   WorkCount=1
+   Width=132
+   Height=151
+   link(doWork1,5175115:doCompare,[(31,27)(31,132)])
+  }
+  Add(If_else,5175115,42,126)
+  {
+   link(onTrue,10986917:onEvent1,[(142,132)(142,27)])
+   link(Op1,10057620:Var,[])
+   link(Op2,15037881:Handle,[(55,109)(118,109)])
+  }
+  Add(MouseEvent,15037881,98,35)
+  {
+   Point(Handle)
+  }
+  Add(GlobalVar,10057620,42,70)
+  {
+   Name="Handle"
+  }
+END_SDK
+Add(Hub,167824,525,259)
+{
+ InCount=2
+ link(onEvent1,11374044:doWork1,[])
+ link(onEvent2,3636101:doWork1,[(548,272)(548,314)])
+}
+Add(GlobalVar,13009144,637,273)
+{
+ Name="Handle"
+}
+Add(TrayIcon,3185668,112,63)
+{
+ Hint="Включена"
+ Point(doAddTrayIcon)
+ Point(doHint)
+ link(onClick,15018649:doCompare,[(172,69)(172,125)(102,125)(102,139)])
+ link(onHide,12382179:doEvent1,[])
+}
+Add(PopupMenu,9896927,161,189)
+{
+ Menu=#9:Выключить|5:Выйти|
+ link(onClick,9188196:doCompare,[])
+}
+Add(StrList,14071905,315,189)
+{
+ FileName="masks.cfg"
+}
+Add(Hub,4334281,77,70)
+{
+ link(onEvent1,3185668:doAddTrayIcon,[(99,76)(99,90)])
+ link(onEvent2,3185668:doHide,[(105,83)(105,76)])
+}
+Add(Ini,3967017,315,77)
+{
+ FileName="config.ini"
+ Section="Startup"
+ Key="CheckGeometry"
+ Type=1
+ link(onResult,9871357:doCompare,[])
+}
+Add(If_else,9871357,364,77)
+{
+ Op2=String(False)
+ link(onTrue,10054055:doReset,[(408,83)(408,265)])
+}
+Add(Hub,12382179,280,77)
+{
+ OutCount=3
+ link(onEvent1,3967017:doRead,[])
+ link(onEvent2,14071905:doLoad,[(304,90)(304,223)])
+ link(onEvent3,11284076:doWork1,[(300,97)(300,187)(261,187)(261,265)])
+}
+Add(If_else,9188196,210,189)
+{
+ Op2=Integer(0)
+ link(onTrue,1535925:doWork1,[(254,195)])
+ link(onFalse,2953706:doClose,[(247,202)(247,120)(23,120)(23,83)])
+}
+Add(Hub,3734518,7,322)
+{
+ OutCount=3
+ link(onEvent1,16414972:doData,[(31,328)(31,209)])
+ link(onEvent2,14460297:doEvent2,[(115,335)(115,216)])
+ link(onEvent3,9896927:doClear,[(149,342)(149,216)])
+}
+Add(DoData,16414972,42,203)
+{
+ Data=String(Выйти)
+ link(onEventData,14460297:doEvent1,[])
+}
+Add(Hub,14460297,119,203)
+{
+ InCount=2
+ OutCount=1
+ link(onEvent1,9896927:doAddItem,[])
+}
+Add(If_else,15018649,112,133)
+{
+ Op2=Integer(0)
+ link(onTrue,1535925:doWork2,[(202,139)(202,265)])
+ link(onFalse,9896927:doPopupHere,[(149,146)(149,181)(149,181)(149,195)])
+}
+Add(HubEx,1535925,250,259)
+{
+ Angle=1
+ link(onEvent,11284076:doWork2,[(254,272)])
+}

@@ -1,0 +1,57 @@
+include std/map.e
+include std/search.e
+include std/sequence.e
+
+include std/pretty.e
+
+function FindBestPair (object Key, object Value,object o ,integer pc)
+		if Value>Result then Result=Value end if
+	return 0
+end function
+
+function FindSolutions (object Key, object Value,object o ,integer pc)
+	if Value=Result then
+	atom ResultA=length(find_all(Key[1], MainString))
+	atom ResultB=length(find_all(Key[2], MainString))
+		if (ResultA=ResultB) or (ResultA>ResultB) then
+			Solutions=add_item(Key[1], Solutions, ADD_APPEND)
+		end if 
+		if (ResultA=ResultB) or (ResultA<ResultB) then
+			Solutions=add_item(Key[2], Solutions, ADD_APPEND)
+		end if
+	end if
+	return 0
+end function
+
+puts(1,"Enter string:")
+sequence MainString=gets(0)
+map MainHash=map:new()
+map SymHash=map:new()
+atom Result=0
+sequence Solutions={}
+puts(1,"\n")
+
+atom i=1
+loop  do
+	if map:has(MainHash,MainString[i..i+1]) then
+		put(MainHash,MainString[i..i+1],1,map:ADD)
+	else
+		put(MainHash,MainString[i..i+1],1)
+	end if
+        if map:has(SymHash,MainString[i]) then
+		put(SymHash,MainString[i],1,map:ADD)
+	else
+		put(SymHash,MainString[i],1)
+	end if
+	i+=1 
+	until i+1=length(MainString)
+end loop
+
+for_each(MainHash, routine_id("FindBestPair"),0)
+for_each(MainHash, routine_id("FindSolutions"),0)
+puts(1,"Solutions:" & Solutions & "\n")
+pretty_print(1,pairs(MainHash,1),{3,2,1,78,"%d","%.10g",32,127,1000,0})
+puts(1,"\n")
+pretty_print(1,pairs(SymHash,1),{1,2,1,78,"%d","%.10g",32,127,1000,0})
+puts(1,"\n")
+gets(0)

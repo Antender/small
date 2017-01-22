@@ -1,0 +1,63 @@
+d1
+' d6.bas
+' 07/05/2009
+LET k=1
+LET kk=1
+WHILE kk != 101
+CLS
+PRINT CAT (87);"Press e - exit, r - randomize, s - stop "
+LET kk=1
+WHILE (kk != 101) AND (kk != 114) AND (kk != 115)
+LET k=INKEY
+LET kk=ASC(k)
+WEND
+IF kk=114
+CLS
+LET a=1
+REPEAT
+IF a=7
+LET a=1
+ENDIF
+GOSUB drawing
+DELAY 1
+LET k=INKEY
+LET kk=ASC(k)
+a=a+1
+UNTIL kk=115
+DELAY 3500
+ENDIF
+CLS
+WEND
+STOP
+LABEL drawing
+x=10
+y=90
+RECT x+1,x+1,y-1,y-1,15 FILLED
+RECT x,x,y,y
+t1=(y-x)/2
+t2=t1/2
+t3=t2/4
+IF a=1
+CIRCLE t1+x,t1+x,t3 FILLED
+ELSEIF a=2
+CIRCLE t2+x,t2+x,t3 FILLED
+CIRCLE t2*3+x,t2*3+x,t3 FILLED
+ELSEIF a=3
+CIRCLE t2+x,t2+x,t3 FILLED
+CIRCLE t2*3+x,t2*3+x,t3 FILLED
+CIRCLE t1+x,t1+x,t3 FILLED 
+ELSEIF a=4
+4
+CIRCLE t2+x,t2+x,t3 FILLED
+CIRCLE t2*3+x,t2+x,t3 FILLED
+CIRCLE  t2+x,t2*3+x,t3 FILLED
+CIRCLE t2*3+x,t2*3+x,t3 FILLED
+ELSEIF a=5
+CIRCLE t1+x,t1+x,t3 FILLED
+GOTO 4
+ELSEIF a=6
+CIRCLE t2+x,t1+x,t3 FILLED
+CIRCLE t2*3+x,t1+x,t3 FILLED
+GOTO 4
+ENDIF
+RETURN 

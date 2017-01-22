@@ -1,0 +1,91 @@
+B3
+' BC.bas
+' 26/03/2009
+PRINT "Bulls and cows v1.0"
+PRINT "Program created by"
+PRINT "Anton Volokitin"
+DELAY 1000
+DIM chislo(1 TO 4,1 TO 2)
+GOSUB init
+WHILE command<>"e"
+	CLS
+	PRINT "Commands--n(ew),h(elp),a(bout)"
+	PRINT "r(ules),e(xit),s(etup)" 
+	PRINT "input 4-digit number to try it"
+	WHILE command<>"e" OR command<>"mainscreen"
+		LINEINPUT command
+		IF ISNUMBER(command)=TRUE 				AND LEN(command)=4
+			LET 	command=INT(command)
+			GOSUB engine
+			command="mainscreen"
+		ELSEIF command="n"
+			GOSUB init
+			CLS
+			LOCATE 7,5
+			PRINT "New number created"
+			command="mainscreen"
+		ENDIF 
+	WEND
+WEND
+STOP
+LABEL engine
+FOR counter1=1 TO 4
+	LET a=command\(10^(4-counter1))
+	LET chislo(counter1,2)=a
+	LET command=command-a*(10^(4-counter1))
+NEXT 
+equivalent=FALSE
+FOR counter1=1 TO 3
+	FOR counter2=counter1+1 TO 4
+		IF chislo(counter1,2)=chislo(counter2,2)
+			equivalent=TRUE
+		ENDIF
+	NEXT
+NEXT
+IF equivalent=TRUE
+	PRINT "Some numbers are 	equivalent"  
+ELSE 
+	IF try>13
+		LET try=1
+	ENDIF
+	FOR v=1 TO 4
+		LET list(v,try)=chislo(v,2)
+	NEXT
+	LET try=try+1
+	bulls=0
+	cows=0
+	FOR counter1=1 TO 4
+		FOR counter2=1 TO 4 
+			IF 	chislo(counter1,1)=chislo(counter2,2)
+				IF 				counter1=counter2
+					bulls=bulls+1
+				ELSE
+					cows=cows+1
+				ENDIF
+			ENDIF
+		NEXT
+	NEXT
+	PRINT "Number of bulls:";bulls
+	PRINT "Number of cows:";cows
+	LET list(5,try-1)=bulls
+	LET list(6,try-1)=cows
+	PAUSE
+ENDIF
+RETURN
+LABEL init
+RANDOMIZE TIMER
+LET try=1
+DIM list(1 TO 6,1 TO 13)
+LET chislo(1,1)=CEIL(RND*10-1)
+FOR counter1=2 TO 4
+	equivalent=TRUE
+	WHILE equivalent=TRUE
+		LET equivalent=FALSE
+		LET chislo(counter1,1)=CEIL(RND*10-1)
+		FOR counter2=1 TO counter1--1
+			IF 		chislo(counter1,1)=chislo(counter2,1)
+				equivalent=TRUE
+			ENDIF
+		NEXT
+	WEND
+NEXT

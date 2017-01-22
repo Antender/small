@@ -1,0 +1,86 @@
+B2
+' BC.bas
+' 26/03/2009
+PRINT "Bulls and cows v0.2"
+DIM chislo(1 TO 4,1 TO 2)
+GOSUB init
+PRINT "Commands--n(ew),h(elp),a(bout)"
+PRINT "r(ules),e(xit),l(ist)input" 
+PRINT "4-digit number to try it"
+WHILE command<>"e"
+	PRINT "Game menu"
+	LINEINPUT command
+	IF ISNUMBER(command)=TRUE 				AND LEN(command)=4
+		LET 	command=INT(command)
+		GOSUB engine
+	ELSEIF command="help"
+		PRINT "Commands--	n(ew),h(elp),a(bout)"
+		PRINT "r(ules),e(xit),l(ist),input" 
+		PRINT "4-digit number to try it"
+		PRINT
+	ELSEIF command="a"
+		PRINT
+		PRINT "Program created by Anton Volokitin"
+	ELSEIF command="r"
+		PRINT "2"
+	ELSEIF command="n"
+		GOSUB init
+	PRINT ""
+		PRINT "New number created"
+	ENDIF 
+WEND
+STOP
+LABEL engine
+FOR counter1=1 TO 4
+	LET a=command\(10^(4-counter1))
+	LET chislo(counter1,2)=a
+	LET command=command-a*(10^(4-counter1))
+NEXT 
+equivalent=FALSE
+FOR counter1=1 TO 3
+	FOR counter2=counter1+1 TO 4
+		IF chislo(counter1,2)=chislo(counter2,2)
+			equivalent=TRUE
+		ENDIF
+	NEXT
+NEXT
+IF equivalent=TRUE
+	PRINT "Some numbers are 	equivalent"  
+ELSE
+	bulls=0
+	cows=0
+	FOR counter1=1 TO 4
+		FOR counter2=1 TO 4 
+			IF 	chislo(counter1,1)=chislo(counter2,2)
+				IF 				counter1=counter2
+					bulls=bulls+1
+				ELSE
+					cows=cows+1
+				ENDIF
+			ENDIF
+		NEXT
+	NEXT
+	PRINT ""
+	PRINT "Number of bulls:"
+	PRINT bulls
+	PRINT "Number of cows:"
+	PRINT cows
+	PAUSE
+ENDIF
+RETURN
+LABEL init
+RANDOMIZE TIMER
+LET chislo(1,1)=CEIL(RND*10-1)
+FOR counter1=2 TO 4
+	equivalent=TRUE
+	WHILE equivalent=TRUE
+		LET equivalent=FALSE
+		LET chislo(counter1,1)=CEIL(RND*10-1)
+		FOR counter2=1 TO counter1-1
+			IF 		chislo(counter1,1)=chislo(counter2,1)
+				equivalent=TRUE
+			ENDIF
+		NEXT
+	WEND
+NEXT
+RETURN

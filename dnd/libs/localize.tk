@@ -1,0 +1,46 @@
+proc choose_directory {} {
+	set ::path [tk_chooseDirectory -mustexist true]
+	cd $::path
+	set files [glob -nocomplain true -tails -- *.msg]
+	.m_lang delete 0 end
+	foreach file $files {
+		set file [string range $file 0 end-4]
+		.m_lang add command -label $file -command "set ::lang $file"
+	}
+}
+
+proc add {} {
+	lappend ::changes_list [list $::local_pattern $::localized]
+	set ::local_pattern {}
+	set ::localized {}
+	focus .local_pattern
+}
+
+proc go {} {
+	set old [lindex [read [set fid [open ${::lang}.msg r]]] 2]
+	close $fid
+	foreach {first second} $old {
+		lappend new [list $first $second]
+	} 
+	foreach item [lsort -index 0 -unique [concat $new $::changes_list ]] {
+		append output "[lindex $item 0] \{[lindex $item 1]\}\n" 
+	}
+	puts [set fid [open ${::lang}.msg w]] "::msgcat::mcmset ${::lang} \{\n$output\}"
+	close $fid
+	set ::changes_list {}
+}
+
+menu .m_lang -tearoff false
+grid [label .l_path -text {Path to the the localization files}] -sticky nesw
+grid [entry .path -textvariable path] [button .b_path -relief flat -text V -command {choose_directory}] -sticky nesw
+grid [label .l_lang -text {Language to use, example: en,ru}] - -sticky nesw
+grid [entry .lang -textvariable lang] [menubutton .m -text V -menu .m_lang] -sticky nesw
+grid [label .l_local_pattern -text {Localization pattern}] - -sticky nesw
+grid [entry .local_pattern -textvariable local_pattern] - -sticky nesw
+grid [label .l_localized -text {Localized string}] - -sticky nesw
+grid [entry .localized -textvariable localized] - -sticky nesw
+grid [button .add -text {Add} -command {add} ] [button .go -text {Go!} -command {go}] -sticky nesw
+
+bind .local_pattern <Return> {focus .localized}
+bind .localized <Return> add	
+tkwait window .

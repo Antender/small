@@ -1,0 +1,50 @@
+﻿package require Tk
+
+bind all <F8> {console show}
+
+proc refresh {} {
+	set ::file_names [lsort [glob -nocomplain -- *.kit *.tcl *.tk]]
+}
+proc Exit {} {
+	set fid [open loader/main.cfg w]
+	set geometry [string map {x { } + { } - { }} [wm geometry .]]
+	puts $fid "mode=$::mode;"
+	puts $fid "x_pos=[lindex $geometry 2];"
+	puts $fid "y_pos=[lindex $geometry 3];"
+	puts $fid "height=[lindex $geometry 1];"
+	puts $fid "width=[lindex $geometry 0];"
+	close $fid
+	destroy .
+}
+
+set settings [read [set fid [open loader/main.cfg r]]]
+close $fid
+if {[regexp -nocase -- {(mode=).+?(;)} $settings mode]} {set mode [string range $mode 5 end-1]} {set mode tcltk.exe}
+if {[regexp -nocase -- {(x_pos=).+?(;)} $settings x_pos]} {set x_pos [string range $x_pos 6 end-1]} {set x_pos 0}
+if {[regexp -nocase -- {(y_pos=).+?(;)} $settings y_pos]} {set y_pos [string range $y_pos 6 end-1]} {set y_pos 0}
+if {[regexp -nocase -- {(height=).+?(;)} $settings height]} {set height [string range $height 7 end-1]} {set height 100}
+if {[regexp -nocase -- {(width=).+?(;)} $settings width]} {set width [string range $width 6 end-1]} {set width 100}
+
+set mode tcltk.exe
+#wm protocol . WM_DELETE_WINDOW {Exit}
+#wm attributes . -topmost true
+
+#menu .main_menu
+#menu .main_menu.options_menu -tearoff false
+#. config -menu .main_menu
+#.main_menu add command -label {Refresh} -command {refresh}
+#.main_menu add cascade -label {Command} -menu .main_menu.options_menu
+#.main_menu.options_menu add radio -label tcltk -variable mode -value tcltk.exe
+#.main_menu.options_menu add radio -label etcl -variable mode -value etcl.exe
+
+#listbox .file_list -setgrid true -yscrollcommand {.list_scroll set} -listvariable file_names
+#scrollbar .list_scroll -command {.file_list yview}
+#grid .file_list .list_scroll -sticky nesw
+#grid columnconfigure . 0 -weight 1 
+#grid rowconfigure . 0 -weight 1
+
+#bind .file_list <ButtonRelease-1> {exec $mode [.file_list get [.file_list nearest %y]] &}
+
+#wm geometry . "[set width]x$height+$x_pos+$y_pos"
+#refresh
+tkwait window .

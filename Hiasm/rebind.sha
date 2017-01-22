@@ -1,0 +1,30 @@
+Make(delphi)
+ver(4.04 build 185)
+Add(Service,2953706,42,77)
+{
+ Wait=0
+ link(onStart,14440635:doReadKey,[])
+}
+Add(LedKey,13138378,294,77)
+{
+ Point(ScrollLock)
+}
+Add(Keyboard,14440635,98,77)
+{
+ Key=90
+ link(onReadKey,4148118:doCompare,[])
+}
+Add(If_else,4148118,147,77)
+{
+ Op2=Integer(1)
+ link(onTrue,10621454:doOperation,[])
+}
+Add(Math,10621454,189,77)
+{
+ link(Op1,13138378:ScrollLock,[(195,50)(267,50)(267,109)])
+}
+Add(DoData,11463530,231,77)
+{
+ link(onEventData,13138378:doScrollLock,[(271,83)(271,97)])
+ link(Data,10621454:Result,[(237,65)(226,65)(226,119)(195,119)])
+}

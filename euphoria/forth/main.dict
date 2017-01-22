@@ -1,0 +1,5 @@
+"."={"dot"}
+"dup"={"dup_"}
+"drop"={"drop_"}
+"drop_all"={"dropall"}
+"source"={"forth_include"}

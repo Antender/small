@@ -1,0 +1,3 @@
+source fixtest.tcl
+fixtest::StartServer 6040
+fixtest::GUI

@@ -1,0 +1,45 @@
+include std/map.e
+include std/search.e
+include std/sequence.e
+
+function FindBestPair (object Key, object Value,object o ,integer pc)
+		if Value>Result then Result=Value end if
+	return 0
+end function
+
+function FindSolutions (object Key, object Value,object o ,integer pc)
+	if Value=Result then
+	atom ResultA=length(find_all(Key[1], MainString))
+	atom ResultB=length(find_all(Key[2], MainString))
+		if (ResultA=ResultB) or (ResultA>ResultB) then
+			Solutions=add_item(Key[1], Solutions, ADD_APPEND)
+		end if 
+		if (ResultA=ResultB) or (ResultA<ResultB) then
+			Solutions=add_item(Key[2], Solutions, ADD_APPEND)
+		end if
+	end if
+	return 0
+end function
+
+puts(1,"Enter string:")
+sequence MainString=gets(0)
+puts(1,"\n")
+atom Result=0
+sequence Solutions={}
+map:map MainHash=map:new()
+
+for i = 1 to length(MainString)-1 do
+	if map:has(MainHash,MainString[i..i+1]) then
+		map:put(MainHash,MainString[i..i+1],1,map:ADD)
+	else
+		map:put(MainHash,MainString[i..i+1],1)
+	end if
+	i+=1 
+	until i+1=length(MainString)
+end for
+	
+map:for_each(MainHash, routine_id("FindBestPair"),0)
+map:for_each(MainHash, routine_id("FindSolutions"),0)
+puts(1,"Solutions:" & Solutions & "\n")
+
+gets(0)

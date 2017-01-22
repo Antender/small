@@ -1,0 +1,18 @@
+razd
+' RAZDEL CHISL.bas
+' 27/03/2009
+INPUT command
+IF ISNUMBER(command)=TRUE
+LET b=LEN(command)
+LET command=INT(command)
+PRINT command
+DIM chislo(1 TO b)
+FOR i=1 TO b
+LET  a=command\(10^(b-i))
+LET chislo(i)=a
+LET command=command-a*(10^(b-i))
+NEXT
+FOR i=1 TO b
+PRINT chislo(i)
+NEXT
+ENDIF

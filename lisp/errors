@@ -1,0 +1,77 @@
+LISP.C
+LISP.C(41): error #2168: Operands of '=' have incompatible types 'LIST *' and 'int'.
+LISP.C(42): error #2168: Operands of '=' have incompatible types 'LIST *' and 'int'.
+LISP.C(45): error #2168: Operands of '=' have incompatible types 'LIST *' and 'int'.
+LISP.C(82): error #2168: Operands of '=' have incompatible types 'LIST *' and 'int'.
+LISP.C(92): error #2120: Redeclaration of 'init', previously declared at LISP.C(66); expected 'int __cdecl function()' but found 'LIST * __cdecl function(char *, int)'.
+LISP.C(95): error #2168: Operands of '=' have incompatible types 'LIST *' and 'int'.
+LISP.C(106): error #2120: Redeclaration of 'makelist', previously declared at LISP.C(41); expected 'int __cdecl function()' but found 'LIST * __cdecl function(void)'.
+LISP.C(112): error #2168: Operands of '=' have incompatible types 'LIST *' and 'int'.
+LISP.C(116): error #2168: Operands of '=' have incompatible types 'LIST *' and 'int'.
+LISP.C(117): error #2060: Invalid return type; expected 'LIST *' but found 'int'.
+LISP.C(119): error #2168: Operands of '=' have incompatible types 'LIST *' and 'int'.
+LISP.C(120): error #2168: Operands of '=' have incompatible types 'LIST *' and 'int'.
+LISP.C(125): error #2168: Operands of '=' have incompatible types 'LIST *' and 'int'.
+LISP.C(126): error #2060: Invalid return type; expected 'LIST *' but found 'int'.
+LISP.C(165): error #2120: Redeclaration of 'eval', previously declared at LISP.C(42); expected 'int __cdecl function()' but found 'LIST * __cdecl function(LIST *, LIST *)'.
+LISP.C(169): error #2060: Invalid return type; expected 'LIST *' but found 'int'.
+LISP.C(180): error #2060: Invalid return type; expected 'LIST *' but found 'int'.
+LISP.C(182): error #2060: Invalid return type; expected 'LIST *' but found 'int'.
+LISP.C(184): error #2060: Invalid return type; expected 'LIST *' but found 'int'.
+LISP.C(186): error #2060: Invalid return type; expected 'LIST *' but found 'int'.
+LISP.C(189): error #2060: Invalid return type; expected 'LIST *' but found 'int'.
+LISP.C(191): error #2060: Invalid return type; expected 'LIST *' but found 'int'.
+LISP.C(194): error #2060: Invalid return type; expected 'LIST *' but found 'int'.
+LISP.C(196): error #2060: Invalid return type; expected 'LIST *' but found 'int'.
+LISP.C(198): error #2060: Invalid return type; expected 'LIST *' but found 'int'.
+LISP.C(211): error #2168: Operands of '=' have incompatible types 'LIST *' and 'int'.
+LISP.C(218): error #2168: Operands of '=' have incompatible types 'LIST *' and 'int'.
+LISP.C(230): error #2060: Invalid return type; expected 'LIST *' but found 'int'.
+LISP.C(240): error #2060: Invalid return type; expected 'LIST *' but found 'int'.
+LISP.C(241): error #2060: Invalid return type; expected 'LIST *' but found 'int'.
+LISP.C(242): error #2060: Invalid return type; expected 'LIST *' but found 'int'.
+LISP.C(250): error #2060: Invalid return type; expected 'LIST *' but found 'int'.
+LISP.C(253): error #2060: Invalid return type; expected 'LIST *' but found 'int'.
+LISP.C(261): error #2060: Invalid return type; expected 'LIST *' but found 'int'.
+LISP.C(263): error #2060: Invalid return type; expected 'LIST *' but found 'int'.
+LISP.C(268): error #2168: Operands of '==' have incompatible types 'int' and 'void *'.
+LISP.C(269): error #2060: Invalid return type; expected 'LIST *' but found 'int'.
+LISP.C(271): error #2060: Invalid return type; expected 'LIST *' but found 'int'.
+LISP.C(274): error #2060: Invalid return type; expected 'LIST *' but found 'int'.
+LISP.C(282): error #2120: Redeclaration of 'evalcond', previously declared at LISP.C(198); expected 'int __cdecl function()' but found 'LIST * __cdecl function(LIST *, LIST *)'.
+LISP.C(292): error #2120: Redeclaration of 'evalprog', previously declared at LISP.C(261); expected 'int __cdecl function()' but found 'LIST * __cdecl function(LIST *, LIST *)'.
+LISP.C(296): error #2168: Operands of '=' have incompatible types 'LIST *' and 'int'.
+LISP.C(298): error #2168: Operands of '=' have incompatible types 'LIST *' and 'int'.
+LISP.C(306): error #2168: Operands of '=' have incompatible types 'LIST *' and 'int'.
+LISP.C(318): error #2120: Redeclaration of 'pairargs', previously declared at LISP.C(213); expected 'int __cdecl function()' but found 'LIST * __cdecl function(LIST *, LIST *, LIST *, int)'.
+LISP.C(324): error #2168: Operands of '=' have incompatible types 'LIST *' and 'int'.
+LISP.C(328): error #2060: Invalid return type; expected 'LIST *' but found 'int'.
+LISP.C(330): error #2060: Invalid return type; expected 'LIST *' but found 'int'.
+LISP.C(336): error #2120: Redeclaration of 'evalargs', previously declared at LISP.C(213); expected 'int __cdecl function()' but found 'LIST * __cdecl function(LIST *, LIST *)'.
+LISP.C(338): error #2060: Invalid return type; expected 'LIST *' but found 'int'.
+LISP.C(344): error #2120: Redeclaration of 'assoc', previously declared at LISP.C(169); expected 'int __cdecl function()' but found 'LIST * __cdecl function(LIST *, char *)'.
+LISP.C(345): error #2060: Invalid return type; expected 'LIST *' but found 'int'.
+LISP.C(350): error #2120: Redeclaration of 'getvar', previously declared at LISP.C(201); expected 'int __cdecl function()' but found 'LIST * __cdecl function(LIST *, char *)'.
+LISP.C(351): error #2060: Invalid return type; expected 'LIST *' but found 'int'.
+LISP.C(358): error #2120: Redeclaration of 'arith', previously declared at LISP.C(249); expected 'int __cdecl function()' but found 'LIST * __cdecl function(LIST *, LIST *, LIST *)'.
+LISP.C(373): error #2168: Operands of '=' have incompatible types 'LIST *' and 'int'.
+LISP.C(402): error #2120: Redeclaration of 'lookup', previously declared at LISP.C(351); expected 'int __cdecl function()' but found 'LIST * __cdecl function(LIST *, char *)'.
+LISP.C(405): error #2168: Operands of '=' have incompatible types 'LIST *' and 'int'.
+LISP.C(407): error #2168: Operands of '?:' have incompatible types 'void *' and 'int'.
+LISP.C(412): error #2120: Redeclaration of 'install', previously declared at LISP.C(95); expected 'int __cdecl function()' but found 'LIST * __cdecl function(char *)'.
+LISP.C(415): error #2168: Operands of '=' have incompatible types 'LIST *' and 'int'.
+LISP.C(418): error #2168: Operands of '=' have incompatible types 'LIST *' and 'int'.
+LISP.C(423): error #2120: Redeclaration of 'getnum', previously declared at LISP.C(125); expected 'int __cdecl function()' but found 'LIST * __cdecl function(void)'.
+LISP.C(427): error #2168: Operands of '=' have incompatible types 'LIST *' and 'int'.
+LISP.C(449): error #2120: Redeclaration of 'getid', previously declared at LISP.C(45); expected 'int __cdecl function()' but found 'LIST * __cdecl function(void)'.
+LISP.C(464): error #2168: Operands of '=' have incompatible types 'LIST *' and 'int'.
+LISP.C(510): error #2168: Operands of '?:' have incompatible types 'void *' and 'int'.
+LISP.C(533): error #2120: Redeclaration of 'car', previously declared at LISP.C(45); expected 'int __cdecl function()' but found 'LIST * __cdecl function(LIST *)'.
+LISP.C(539): error #2120: Redeclaration of 'cdr', previously declared at LISP.C(45); expected 'int __cdecl function()' but found 'LIST * __cdecl function(LIST *)'.
+LISP.C(545): error #2120: Redeclaration of 'cons', previously declared at LISP.C(52); expected 'int __cdecl function()' but found 'LIST * __cdecl function(LIST *, LIST *)'.
+LISP.C(557): error #2120: Redeclaration of 'eq', previously declared at LISP.C(188); expected 'int __cdecl function()' but found 'LIST * __cdecl function(LIST *, LIST *)'.
+LISP.C(568): error #2120: Redeclaration of 'atom', previously declared at LISP.C(186); expected 'int __cdecl function()' but found 'LIST * __cdecl function(LIST *)'.
+LISP.C(580): error #2120: Redeclaration of '_and', previously declared at LISP.C(240); expected 'int __cdecl function()' but found 'LIST * __cdecl function(LIST *)'.
+LISP.C(589): error #2120: Redeclaration of '_or', previously declared at LISP.C(241); expected 'int __cdecl function()' but found 'LIST * __cdecl function(LIST *)'.
+LISP.C(598): error #2120: Redeclaration of '_not', previously declared at LISP.C(242); expected 'int __cdecl function()' but found 'LIST * __cdecl function(LIST *)'.
+LISP.C(607): error #2120: Redeclaration of '_list', previously declared at LISP.C(196); expected 'int __cdecl function()' but found 'LIST * __cdecl function(LIST *)'.

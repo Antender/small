@@ -1,0 +1,10 @@
+rand
+' RANDOMIZER.bas
+' 07/05/2009
+PRINT "Enter upper bound"
+INPUT a
+PRINT "Enter lower bound"
+INPUT b
+RANDOMIZE
+result=INT(RND*(a-b))+b
+PRINT result

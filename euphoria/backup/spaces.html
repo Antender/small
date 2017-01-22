@@ -1,0 +1,56 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Final//EN">
+<html>
+<body>
+<!-- Generated with eu2html by Martin Stachon -->
+<code>
+<pre>
+<font color="#0000FF">include </font>std/map.e
+<font color="#0000FF">include </font>std/search.e
+<font color="#0000FF">include </font>std/<font color="#FF00FF">sequence</font>.e
+
+<font color="#0000FF">function </font>FindBestPair <font color="#993333">(</font><font color="#FF00FF">object </font>Key, <font color="#FF00FF">object </font>Value,<font color="#FF00FF">object </font>o ,<font color="#FF00FF">integer </font>pc<font color="#993333">)</font>
+<font color="#0000FF">		if </font>Value&gt;Result <font color="#0000FF">then </font>Result=Value <font color="#0000FF">end if</font>
+<font color="#0000FF">	return </font>0
+<font color="#0000FF">end function</font>
+
+<font color="#0000FF">function </font>FindSolutions <font color="#993333">(</font><font color="#FF00FF">object </font>Key, <font color="#FF00FF">object </font>Value,<font color="#FF00FF">object </font>o ,<font color="#FF00FF">integer </font>pc<font color="#993333">)</font>
+<font color="#0000FF">	if </font>Value=Result <font color="#0000FF">then</font>
+<font color="#FF00FF">	atom </font>ResultA=<font color="#FF00FF">length</font><font color="#993333">(</font>find_all<font color="#330033">(</font>Key<font color="#0000FF">[</font>1<font color="#0000FF">]</font>, MainString<font color="#330033">)</font><font color="#993333">)</font>
+<font color="#FF00FF">	atom </font>ResultB=<font color="#FF00FF">length</font><font color="#993333">(</font>find_all<font color="#330033">(</font>Key<font color="#0000FF">[</font>2<font color="#0000FF">]</font>, MainString<font color="#330033">)</font><font color="#993333">)</font>
+<font color="#0000FF">		if </font><font color="#993333">(</font>ResultA=ResultB<font color="#993333">) </font><font color="#0000FF">or </font><font color="#993333">(</font>ResultA&gt;ResultB<font color="#993333">) </font><font color="#0000FF">then</font>
+			Solutions=add_item<font color="#993333">(</font>Key<font color="#330033">[</font>1<font color="#330033">]</font>, Solutions, ADD_APPEND<font color="#993333">)</font>
+<font color="#0000FF">		end if </font>
+<font color="#0000FF">		if </font><font color="#993333">(</font>ResultA=ResultB<font color="#993333">) </font><font color="#0000FF">or </font><font color="#993333">(</font>ResultA&lt;ResultB<font color="#993333">) </font><font color="#0000FF">then</font>
+			Solutions=add_item<font color="#993333">(</font>Key<font color="#330033">[</font>2<font color="#330033">]</font>, Solutions, ADD_APPEND<font color="#993333">)</font>
+<font color="#0000FF">		end if</font>
+<font color="#0000FF">	end if</font>
+<font color="#0000FF">	return </font>0
+<font color="#0000FF">end function</font>
+
+<font color="#FF00FF">puts</font><font color="#993333">(</font>1,<font color="#00A033">"Enter string:"</font><font color="#993333">)</font>
+<font color="#FF00FF">sequence </font>MainString=<font color="#FF00FF">gets</font><font color="#993333">(</font>0<font color="#993333">)</font>
+<font color="#FF00FF">puts</font><font color="#993333">(</font>1,<font color="#00A033">"\n"</font><font color="#993333">)</font>
+<font color="#FF00FF">atom </font>Result=0
+<font color="#FF00FF">sequence </font>Solutions=<font color="#993333">{}</font>
+map:map MainHash=map:new<font color="#993333">()</font>
+
+<font color="#0000FF">for </font>i = 1 <font color="#0000FF">to </font><font color="#FF00FF">length</font><font color="#993333">(</font>MainString<font color="#993333">)</font>-1 <font color="#0000FF">do</font>
+<font color="#0000FF">	if </font>map:has<font color="#993333">(</font>MainHash,MainString<font color="#330033">[</font>i..i+1<font color="#330033">]</font><font color="#993333">) </font><font color="#0000FF">then</font>
+		map:put<font color="#993333">(</font>MainHash,MainString<font color="#330033">[</font>i..i+1<font color="#330033">]</font>,1,map:ADD<font color="#993333">)</font>
+<font color="#0000FF">	else</font>
+		map:put<font color="#993333">(</font>MainHash,MainString<font color="#330033">[</font>i..i+1<font color="#330033">]</font>,1<font color="#993333">)</font>
+<font color="#0000FF">	end if</font>
+	i+=1 
+	until i+1=<font color="#FF00FF">length</font><font color="#993333">(</font>MainString<font color="#993333">)</font>
+<font color="#0000FF">end for</font>
+	
+map:for_each<font color="#993333">(</font>MainHash, <font color="#FF00FF">routine_id</font><font color="#330033">(</font><font color="#00A033">"FindBestPair"</font><font color="#330033">)</font>,0<font color="#993333">)</font>
+map:for_each<font color="#993333">(</font>MainHash, <font color="#FF00FF">routine_id</font><font color="#330033">(</font><font color="#00A033">"FindSolutions"</font><font color="#330033">)</font>,0<font color="#993333">)</font>
+<font color="#FF00FF">puts</font><font color="#993333">(</font>1,<font color="#00A033">"Solutions:" </font>& Solutions & <font color="#00A033">"\n"</font><font color="#993333">)</font>
+
+<font color="#FF00FF">gets</font><font color="#993333">(</font>0<font color="#993333">)</font>
+
+</pre>
+</code>
+</body>
+</html>

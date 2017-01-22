@@ -1,0 +1,60 @@
+set treeview [ttk::treeview .treeview]
+
+proc serialize {t} {
+  string map {\\\{ \{ \\\} \} \{ \( \} \)} $t
+}
+
+proc deserialize {l} {
+  string map {\{ \\\{ \} \\\} \( \{\  \) \}\ } $l
+}
+
+set input [entry .input]
+set treeget [button .treeget -command {treeget} -text get]
+set treeset [button .treeset -command {treeset} -text set]
+set tree  [ttk::treeview .tree -show tree]
+grid $treeget $input $treeset
+grid $tree - -
+
+proc treeset {} {
+  global tree input
+  if {[$tree children {}]!={}} {
+    $tree delete [$tree children {}]
+  }
+  construct [deserialize [$input get]] {}
+}
+
+proc treeget {} {
+  global tree input
+  $input delete 0 end
+  $input insert 0 [serialize [readtree {}]]
+}
+
+proc readtree {parent} {
+  global tree
+  set result {}
+  foreach child [$tree children $parent] {
+    if {[$tree children $child]!={}} {
+      lappend result [list [$tree item $child -text] [join [readtree $child]]]
+    } else {
+      lappend result [$tree item $child -text]
+    }
+  }
+  return $result
+}
+
+proc construct {t parent} {
+  global tree
+  set counter 0
+  foreach node $t {
+    if {[llength $node]>1} {
+      construct [lrange $node 1 end] [$tree insert $parent $counter -text [lindex $node 0]]
+    } else {
+      if {[string equal [join $node] $node]} {
+        $tree insert $parent $counter -text $node
+      } else {
+        construct $node [$tree insert $parent $counter -text (...)]
+      }
+    }
+    incr counter
+  }
+}

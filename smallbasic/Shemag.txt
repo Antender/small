@@ -1,0 +1,30 @@
+shema g
+' SHEMA GORNERA.bas
+' 25/03/09
+PRINT "vvedite max stepen"
+INPUT maxs
+DIM maxc(maxs)
+FOR i=0 TO maxs
+	PRINT "vvedite x*", i
+	INPUT maxc(i)
+NEXT
+FOR i=1 TO maxc(0)
+	PRINT 
+	IF maxc(0)%i=0
+		LET delit=i
+  		GOSUB 10
+  		LET delit=i*(-1)
+  		GOSUB 10
+  	ENDIF
+NEXT
+						STOP
+LABEL 10
+LET s=0 
+FOR i=0 TO (maxs)
+	LET s=s*delit
+	LET s=s+maxc(maxs-i)
+NEXT
+IF s=0  THEN
+	PRINT "podhodit",delit
+ENDIF
+						RETURN

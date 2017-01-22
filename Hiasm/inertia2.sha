@@ -1,0 +1,52 @@
+Make(delphi)
+ver(4.03 build 181)
+Add(Service,2953706,21,105)
+{
+ Wait=0
+ link(onStart,12750266:doTimer,[(73,111)(73,113)])
+}
+Add(MouseEvent,5362390,246,198)
+{
+ Point(doPosition)
+ link(X,5917847:Var2,[(259,180)(224,180)])
+ link(Y,9231231:Var2,[(266,180)(364,180)])
+}
+Add(MathParse,2508291,148,107)
+{
+ MathStr="(%0 + (%2 - %1)/4)*0.9"
+ @IsLib=True
+ link(onResult,4432814:doOperation,[])
+ link(X1,5917847:Var1,[(154,85)(195,85)(195,158)])
+ link(X2,5362390:MouseX,[(161,90)(188,90)(188,240)(252,240)])
+}
+Add(Timer,12750266,92,107)
+{
+ Interval=10
+ Enable=1
+ link(onTimer,2508291:doCalc,[])
+}
+Add(MathParse,13069167,295,107)
+{
+ elink(2508291)
+ link(onResult,11337578:doOperation,[])
+ link(X1,9231231:Var1,[(301,97)(335,97)(335,158)])
+ link(X2,5362390:MouseY,[(308,89)(287,89)(287,240)(259,240)])
+}
+Add(Math,4432814,218,107)
+{
+ link(onResult,13069167:doCalc,[])
+ link(Op1,5917847:Var3,[(224,97)(268,97)(268,158)])
+}
+Add(Math,11337578,358,107)
+{
+ link(onResult,5362390:doPosition,[(420,113)(420,254)(236,254)(236,218)])
+ link(Op1,9231231:Var3,[(364,97)(402,97)(402,158)])
+}
+Add(GetDataEx,9231231,358,153)
+{
+ link(Data,11337578:Result,[])
+}
+Add(GetDataEx,5917847,218,153)
+{
+ link(Data,4432814:Result,[])
+}

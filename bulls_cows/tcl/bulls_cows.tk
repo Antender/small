@@ -1,0 +1,67 @@
+package require Tk
+wm title . {Быки и коровы (by Antender)}
+
+proc bs {} {
+	set ::numbers [string replace $::numbers end end]
+}
+
+proc process {numbers numbers_to_guess} {
+	if {[llength $numbers]==4} {
+    set bulls 0
+	set cows 0
+	for {set i 0} {$i<4} {incr i} {
+		set num_index [lsearch -exact $numbers_to_guess [lindex $numbers $i]]
+		if {$num_index>=0} {if {$num_index==$i} {incr bulls} else {incr cows}} 
+	}
+	incr ::attempt
+	if {$bulls==4} {
+		set answer [tk_messageBox -message "Победа!" -icon question -type yesno -detail "Вы угадали число $::numbers_to_guess\n c $::attempt попыток\nНачать новую игру?"]
+		if {$answer=={yes}} {
+			new_numbers
+			set ::attempts {}
+			set ::numbers {}	
+		} else {
+			exit
+		}
+	} else {
+		lappend ::attempts "$::numbers  Б:$bulls  К:$cows"
+		set ::numbers {}
+	}
+	}
+}
+
+proc enter_number number {
+	if {([string length $::numbers]<4) && (![string match "*$number*" $::numbers])} {append ::numbers $number}
+}
+
+proc new_numbers {} {
+	set ::numbers_to_guess {}
+	for {set i 1} {$i<=4} {if {![string match "*$number*" $::numbers_to_guess]} {append ::numbers_to_guess $number;incr i}} {
+		set number [expr int(rand()*10)]
+	}
+}
+
+set attempt 0
+listbox .attempts -listvariable attempts -yscrollcommand {.attempts_scroll set}
+scrollbar .attempts_scroll -command {.attempts yview}
+entry  .numbers -width 4 -state disabled -textvariable numbers
+button .bs      -text {<---}  -command {bs}
+button .enter   -text {Ввод} -command {process [split $numbers {}] [split $numbers_to_guess {}]}
+
+for {set i 0} {$i<=9} {incr i} {
+	button .b$i -text "$i" -command "enter_number $i"
+}
+
+set numbers_to_guess {}
+new_numbers
+
+grid .numbers -   -      .attempts .attempts_scroll -sticky nesw
+grid .b1      .b2 .b3    ^         ^                -sticky nesw
+grid .b4      .b5 .b6    ^         ^                -sticky nesw
+grid .b7      .b8 .b9    ^         ^                -sticky nesw
+grid .bs      .b0 .enter ^         ^                -sticky nesw
+grid columnconfigure . {0 1 2}     -uniform buttons  
+grid columnconfigure . 3                            -weight 1
+grid rowconfigure    . {0 1 2 3 4} -uniform all     -weight 1         
+
+tkwait window .
